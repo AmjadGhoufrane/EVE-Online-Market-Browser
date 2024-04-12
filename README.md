@@ -1,2 +1,2 @@
-# Simple Eve Online Market Fetcher
-- A simple implementation of the eve online ESI (eve swagger interface) in java
+# A work in progress repository
+- A simple implementation of the ESI (eve swagger interface) in java
