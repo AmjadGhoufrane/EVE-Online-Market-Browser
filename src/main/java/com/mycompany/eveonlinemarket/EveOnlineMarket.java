@@ -43,14 +43,19 @@ public class EveOnlineMarket {
 
             // Print out the prices
             for (JsonElement element : ordersArray) {
+
                 JsonObject order = element.getAsJsonObject();
+
                 String type = order.get("type_id").getAsString();
                 double price = order.get("price").getAsDouble();
-                System.out.println("Type: " + type + ", Price: " + price);
+                int sysid = order.get("system_id").getAsInt();
+
+                System.out.println("Type: " + type + ", Price: " + price +", System ID : "+sysid);
             }
 
             // Close the response
             response.close();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
