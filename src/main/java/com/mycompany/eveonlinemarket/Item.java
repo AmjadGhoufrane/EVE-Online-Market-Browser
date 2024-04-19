@@ -1,10 +1,11 @@
 package com.mycompany.eveonlinemarket;
 
 
+
 public class Item {
     private int duration;
     private boolean isBuyOrder;
-    private int issued;
+    private String issued;
     private long locationId;
     private int minVolume;
     private long orderId;
@@ -15,7 +16,7 @@ public class Item {
     private int volumeRemain;
     private int volumeTotal;
 
-    public Item(int duration, boolean isBuyOrder, int issued, long locationId, int minVolume, long orderId, double price, String range, int systemId, int typeId, int volumeRemain, int volumeTotal) {
+    public Item(int duration, boolean isBuyOrder, String issued, long locationId, int minVolume, long orderId, double price, String range, int systemId, int typeId, int volumeRemain, int volumeTotal) {
         this.duration = duration;
         this.isBuyOrder = isBuyOrder;
         this.issued = issued;
@@ -46,11 +47,11 @@ public class Item {
         isBuyOrder = buyOrder;
     }
 
-    public int getIssued() {
+    public String getIssued() {
         return issued;
     }
 
-    public void setIssued(int issued) {
+    public void setIssued(String issued) {
         this.issued = issued;
     }
 
@@ -124,5 +125,16 @@ public class Item {
 
     public void setVolumeTotal(int volumeTotal) {
         this.volumeTotal = volumeTotal;
+    }
+
+    @Override
+    public String toString() {
+        return duration + ", " +
+                issued + ", " +
+                minVolume + ", " +
+                price + ", " +
+                range + ", " +
+                volumeRemain + ", " +
+                volumeTotal;
     }
 }

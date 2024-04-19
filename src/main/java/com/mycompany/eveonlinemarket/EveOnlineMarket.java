@@ -15,10 +15,8 @@ import okhttp3.Response;
 import java.io.IOException;
 
 public class EveOnlineMarket {
-
-
-
     public static void main(String[] args) {
-
+        MarketFetcher MarketData = new MarketFetcher();
+        MarketData.getSellOrders();
     }
 }
