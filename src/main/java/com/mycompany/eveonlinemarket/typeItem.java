@@ -34,4 +34,64 @@ public class typeItem {
         this.soundID = soundID;
         this.graphicID = graphicID;
     }
+
+    public int getTypeID() {
+        return typeID;
+    }
+
+    public int getGroupID() {
+        return groupID;
+    }
+
+    public String getTypeName() {
+        return typeName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public double getMass() {
+        return mass;
+    }
+
+    public double getVolume() {
+        return volume;
+    }
+
+    public double getCapacity() {
+        return capacity;
+    }
+
+    public int getPortionSize() {
+        return portionSize;
+    }
+
+    public int getRaceID() {
+        return raceID;
+    }
+
+    public double getBasePrice() {
+        return basePrice;
+    }
+
+    public int getPublished() {
+        return published;
+    }
+
+    public int getMarketGroupID() {
+        return marketGroupID;
+    }
+
+    public int getIconID() {
+        return iconID;
+    }
+
+    public int getSoundID() {
+        return soundID;
+    }
+
+    public int getGraphicID() {
+        return graphicID;
+    }
 }
