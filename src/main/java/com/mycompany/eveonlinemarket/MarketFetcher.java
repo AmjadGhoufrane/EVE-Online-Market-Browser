@@ -20,6 +20,7 @@ public class MarketFetcher {
     protected ArrayList<Item> buyOrders = new ArrayList<>();
     protected ArrayList<Item> sellOrders = new ArrayList<>();
 
+
     public MarketFetcher(){
         this.Fetch();
     }
@@ -32,6 +33,7 @@ public class MarketFetcher {
 
         // Construct the URL for fetching market prices in the FORGE region
         String url = API_BASE_URL + MARKET_PRICES_ENDPOINT.replace("{region_id}", forgeRegionId);
+
 
         // Create lists to store buy orders and sell orders
 
@@ -67,7 +69,7 @@ public class MarketFetcher {
                 int volumeTotal = order.get("volume_total").getAsInt();
 
                 // Create Item object
-                Item item = new Item(duration, isBuyOrder, issued, locationId, minVolume, orderId, price, range, systemId, typeId, volumeRemain, volumeTotal);
+                Item item = new Item(EveItemTypeStore.getItemNameByTypeId(typeId),duration, isBuyOrder, issued, locationId, minVolume, orderId, price, range, systemId, typeId, volumeRemain, volumeTotal);
 
                 // Add to appropriate list
                 if (isBuyOrder) {

@@ -16,7 +16,9 @@ public class Item {
     private int volumeRemain;
     private int volumeTotal;
 
-    public Item(int duration, boolean isBuyOrder, String issued, long locationId, int minVolume, long orderId, double price, String range, int systemId, int typeId, int volumeRemain, int volumeTotal) {
+    private String name;
+
+    public Item(String name, int duration, boolean isBuyOrder, String issued, long locationId, int minVolume, long orderId, double price, String range, int systemId, int typeId, int volumeRemain, int volumeTotal) {
         this.duration = duration;
         this.isBuyOrder = isBuyOrder;
         this.issued = issued;
@@ -29,6 +31,7 @@ public class Item {
         this.typeId = typeId;
         this.volumeRemain = volumeRemain;
         this.volumeTotal = volumeTotal;
+        this.name = name;
     }
 
     public int getDuration() {
@@ -129,7 +132,8 @@ public class Item {
 
     @Override
     public String toString() {
-        return duration + ", " +
+        return name + ", " +
+                duration + ", " +
                 issued + ", " +
                 minVolume + ", " +
                 price + ", " +
