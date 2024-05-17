@@ -1,18 +1,4 @@
-package com.mycompany.eveonlinemarket;
-
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
-
-
-
-
-public class EveItemTypeStore {
-    HashMap<Integer,typeItem> types = new HashMap<Integer, typeItem>();
-
-    public int compteTypes (String nom_fichier){
+ public int compteTypes (String nom_fichier){
         int cpt=0;
         try
         {
@@ -61,41 +47,3 @@ public class EveItemTypeStore {
         }
         return tab;
     }
-
-    public EveItemTypeStore() {
-        typeItem[] tab = this.chargerTypes();
-        for(typeItem t : tab){
-                this.types.put(t.getTypeID(),t);
-        }
-    }
-
-    public String getItemNameByTypeId(int id){
-        typeItem t = types.get((Integer) id);
-        if(t==null){
-            return "0";
-        }
-        return t.getTypeName();
-    }
-
-    private int parseIntn(String s){
-        try{
-            int a = Integer.parseInt(s);
-            return a;
-
-        }
-        catch(NumberFormatException nfe){
-            return 0;
-        }
-    }
-
-    private double parseDoublen(String s){
-        try{
-            double a = Double.parseDouble(s);
-            return a;
-
-        }
-        catch(Exception e){
-            return 0.0;
-        }
-    }
-}

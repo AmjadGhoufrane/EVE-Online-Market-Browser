@@ -14,6 +14,8 @@ import java.util.List;
 
 public class MarketFetcher {
 
+    private EveItemTypeStore types = new EveItemTypeStore();
+
     private static final String API_BASE_URL = "https://esi.evetech.net/latest";
     private static final String MARKET_PRICES_ENDPOINT = "/markets/{region_id}/orders/";
 
@@ -69,7 +71,7 @@ public class MarketFetcher {
                 int volumeTotal = order.get("volume_total").getAsInt();
 
                 // Create Item object
-                Item item = new Item(EveItemTypeStore.getItemNameByTypeId(typeId),duration, isBuyOrder, issued, locationId, minVolume, orderId, price, range, systemId, typeId, volumeRemain, volumeTotal);
+                Item item = new Item(this.types.getItemNameByTypeId(typeId),duration, isBuyOrder, issued, locationId, minVolume, orderId, price, range, systemId, typeId, volumeRemain, volumeTotal);
 
                 // Add to appropriate list
                 if (isBuyOrder) {
