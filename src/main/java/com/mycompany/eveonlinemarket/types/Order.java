@@ -1,8 +1,8 @@
-package com.mycompany.eveonlinemarket;
+package com.mycompany.eveonlinemarket.types;
 
 
 
-public class Item {
+public class Order {
     private int duration;
     private boolean isBuyOrder;
     private String issued;
@@ -18,7 +18,7 @@ public class Item {
 
     private String name;
 
-    public Item(String name, int duration, boolean isBuyOrder, String issued, long locationId, int minVolume, long orderId, double price, String range, int systemId, int typeId, int volumeRemain, int volumeTotal) {
+    public Order(String name, int duration, boolean isBuyOrder, String issued, long locationId, int minVolume, long orderId, double price, String range, int systemId, int typeId, int volumeRemain, int volumeTotal) {
         this.duration = duration;
         this.isBuyOrder = isBuyOrder;
         this.issued = issued;

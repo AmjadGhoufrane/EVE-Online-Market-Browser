@@ -1,16 +1,16 @@
-package com.mycompany.eveonlinemarket;
+package com.mycompany.eveonlinemarket.serverInteractions;
+
+import com.mycompany.eveonlinemarket.types.typeItem;
 
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 
 
 
 public class EveItemTypeStore {
-    HashMap<Integer,typeItem> types = new HashMap<Integer, typeItem>();
+    HashMap<Integer, typeItem> types = new HashMap<Integer, typeItem>();
 
     public int compteTypes (String nom_fichier){
         int cpt=0;
@@ -33,7 +33,7 @@ public class EveItemTypeStore {
     }
 
     public typeItem[] chargerTypes (){
-        String nom_fichier = "invTypes.csv";
+        String nom_fichier = "invtTypes_nodesc.csv";
         typeItem[] tab = new typeItem[compteTypes(nom_fichier)];
         try
         {
@@ -46,11 +46,11 @@ public class EveItemTypeStore {
                 cour=scanner.nextLine();
                 String[] split_cour=cour.split(";");
                 // 0typeID; 1groupID; 2typeName; 3description; 4mass; 5volume; 6capacity; 7portionSize; 8raceID; 9basePrice; 10published; 11marketGroupID; 12iconID; 13soundID; 14graphicID
-                tab[i]=new typeItem(parseIntn(split_cour[0]),parseIntn(split_cour[1]),split_cour[2],split_cour[3]
+                this.types.put(parseIntn(split_cour[0]),new typeItem(parseIntn(split_cour[0]),parseIntn(split_cour[1]),split_cour[2],split_cour[3]
                         ,parseDoublen(split_cour[4]),parseDoublen(split_cour[5]),parseDoublen(split_cour[6])
                         ,parseIntn(split_cour[7]),parseIntn(split_cour[8]),parseDoublen(split_cour[9])
                         ,parseIntn(split_cour[10]),parseIntn(split_cour[11]),parseIntn(split_cour[12])
-                        ,parseIntn(split_cour[13]),parseIntn(split_cour[14]));
+                        ,parseIntn(split_cour[13]),parseIntn(split_cour[14])));
                 i++;
             }
             scanner.close();
@@ -63,10 +63,7 @@ public class EveItemTypeStore {
     }
 
     public EveItemTypeStore() {
-        typeItem[] tab = this.chargerTypes();
-        for(typeItem t : tab){
-                this.types.put(t.getTypeID(),t);
-        }
+        this.chargerTypes();
     }
 
     public String getItemNameByTypeId(int id){

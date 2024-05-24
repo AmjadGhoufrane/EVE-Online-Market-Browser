@@ -1,16 +1,16 @@
-package com.mycompany.eveonlinemarket;
+package com.mycompany.eveonlinemarket.serverInteractions;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.mycompany.eveonlinemarket.types.Order;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class MarketFetcher {
 
@@ -19,8 +19,8 @@ public class MarketFetcher {
     private static final String API_BASE_URL = "https://esi.evetech.net/latest";
     private static final String MARKET_PRICES_ENDPOINT = "/markets/{region_id}/orders/";
 
-    protected ArrayList<Item> buyOrders = new ArrayList<>();
-    protected ArrayList<Item> sellOrders = new ArrayList<>();
+    protected ArrayList<Order> buyOrders = new ArrayList<>();
+    protected ArrayList<Order> sellOrders = new ArrayList<>();
 
 
     public MarketFetcher(){
@@ -71,7 +71,7 @@ public class MarketFetcher {
                 int volumeTotal = order.get("volume_total").getAsInt();
 
                 // Create Item object
-                Item item = new Item(this.types.getItemNameByTypeId(typeId),duration, isBuyOrder, issued, locationId, minVolume, orderId, price, range, systemId, typeId, volumeRemain, volumeTotal);
+                Order item = new Order(this.types.getItemNameByTypeId(typeId),duration, isBuyOrder, issued, locationId, minVolume, orderId, price, range, systemId, typeId, volumeRemain, volumeTotal);
 
                 // Add to appropriate list
                 if (isBuyOrder) {
@@ -92,13 +92,13 @@ public class MarketFetcher {
     }
 
     public void getBuyOrders(){
-        for(Item i: buyOrders){
+        for(Order i: buyOrders){
             System.out.println(i);
         }
     }
 
     public void getSellOrders(){
-        for(Item i: sellOrders){
+        for(Order i: sellOrders){
             System.out.println(i);
         }
     }

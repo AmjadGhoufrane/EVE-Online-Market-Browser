@@ -1,4 +1,4 @@
-package com.mycompany.eveonlinemarket;
+package com.mycompany.eveonlinemarket.types;
 
 public class typeItem {
     private int typeID;
