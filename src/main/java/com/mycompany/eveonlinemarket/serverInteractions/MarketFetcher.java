@@ -5,12 +5,15 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.mycompany.eveonlinemarket.types.Order;
+import com.mycompany.eveonlinemarket.types.OrderLists;
+import com.mycompany.eveonlinemarket.types.typeItem;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MarketFetcher {
 
@@ -21,6 +24,9 @@ public class MarketFetcher {
 
     protected ArrayList<Order> buyOrders = new ArrayList<>();
     protected ArrayList<Order> sellOrders = new ArrayList<>();
+
+    protected HashMap<typeItem, OrderLists> orders = new HashMap<>();
+
 
 
     public MarketFetcher(){
@@ -73,11 +79,23 @@ public class MarketFetcher {
                 // Create Item object
                 Order item = new Order(this.types.getItemNameByTypeId(typeId),duration, isBuyOrder, issued, locationId, minVolume, orderId, price, range, systemId, typeId, volumeRemain, volumeTotal);
 
-                // Add to appropriate list
-                if (isBuyOrder) {
-                    buyOrders.add(item);
-                } else {
-                    sellOrders.add(item);
+                if(!orders.containsKey(this.types.gettypeItembyId(typeId))){
+                    orders.put(this.types.gettypeItembyId(typeId),new OrderLists(new ArrayList<>(),new ArrayList<>()));
+                    if(isBuyOrder){
+                        orders.get(this.types.gettypeItembyId(typeId)).addBuyOrder(item);
+                    }
+                    else{
+                        orders.get(this.types.gettypeItembyId(typeId)).addSellOrder(item);
+
+                    }
+                }
+                else{
+                    if(isBuyOrder){
+                        orders.get(this.types.gettypeItembyId(typeId)).addBuyOrder(item);
+                    }
+                    else{
+                        orders.get(this.types.gettypeItembyId(typeId)).addSellOrder(item);
+                    }
                 }
             }
 
@@ -92,14 +110,18 @@ public class MarketFetcher {
     }
 
     public void getBuyOrders(){
-        for(Order i: buyOrders){
-            System.out.println(i);
+        for(typeItem t: orders.keySet()){
+            for(Order i: orders.get(t).getBuyOrders()){
+                System.out.println(i);
+            }
         }
     }
 
     public void getSellOrders(){
-        for(Order i: sellOrders){
-            System.out.println(i);
+        for(typeItem t: orders.keySet()){
+            for(Order i: orders.get(t).getSellOrders()){
+                System.out.println(i);
+            }
         }
     }
 }

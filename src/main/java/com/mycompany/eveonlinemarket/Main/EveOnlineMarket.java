@@ -4,11 +4,14 @@
 
 package com.mycompany.eveonlinemarket.Main;
 
+import com.mycompany.eveonlinemarket.ihm.MaFenetre;
 import com.mycompany.eveonlinemarket.serverInteractions.MarketFetcher;
 
 public class EveOnlineMarket {
     public static void main(String[] args) {
-        MarketFetcher MarketData = new MarketFetcher();
-        MarketData.getSellOrders();
+//        MarketFetcher MarketData = new MarketFetcher();
+//        MarketData.getSellOrders();
+        MaFenetre fen=new MaFenetre();
+        fen.setVisible(true);
     }
 }

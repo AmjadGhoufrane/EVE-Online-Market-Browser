@@ -74,13 +74,17 @@ public class EveItemTypeStore {
         return t.getTypeName();
     }
 
+    public typeItem gettypeItembyId(int id){
+        return types.get((Integer) id);
+    }
+
     private int parseIntn(String s){
-        try{
+        try{   // Fuck around
             int a = Integer.parseInt(s);
             return a;
 
         }
-        catch(NumberFormatException nfe){
+        catch(NumberFormatException nfe){   // Find out
             return 0;
         }
     }
